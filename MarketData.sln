@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E4EC9CA5-F1D4-45FC-9FDE-EB555380D026}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketData", "src\MarketData\MarketData.csproj", "{1D6E159F-4EAF-4DA0-850F-FCCCBF556566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketDataAggregator", "src\MarketDataAggregator\MarketDataAggregator.csproj", "{65C0CDF6-F693-4A19-8784-6E843F5EE1E9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1D6E159F-4EAF-4DA0-850F-FCCCBF556566} = {E4EC9CA5-F1D4-45FC-9FDE-EB555380D026}
+		{65C0CDF6-F693-4A19-8784-6E843F5EE1E9} = {E4EC9CA5-F1D4-45FC-9FDE-EB555380D026}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D6E159F-4EAF-4DA0-850F-FCCCBF556566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D6E159F-4EAF-4DA0-850F-FCCCBF556566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D6E159F-4EAF-4DA0-850F-FCCCBF556566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D6E159F-4EAF-4DA0-850F-FCCCBF556566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65C0CDF6-F693-4A19-8784-6E843F5EE1E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65C0CDF6-F693-4A19-8784-6E843F5EE1E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65C0CDF6-F693-4A19-8784-6E843F5EE1E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65C0CDF6-F693-4A19-8784-6E843F5EE1E9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
