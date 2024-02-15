@@ -50,6 +50,7 @@ public class KlineSubscriberActor : ReceiveActor, IWithUnboundedStash
     protected override void PreStart()
     {
         // TODO: TEST PURPOSES ONLY
+        _consoleWriterActor.Tell("The actor will shutdown in 15 seconds for testing purposes");
         Context.System.Scheduler.ScheduleTellOnce(TimeSpan.FromSeconds(15), Self, GracefulShutdown.Instance, Self);
 
         Self.Tell(new FetchKlineSnapshot());
