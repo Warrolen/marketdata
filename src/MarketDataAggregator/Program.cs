@@ -1,18 +1,33 @@
 ﻿using Akka.Actor;
+using Akka.Hosting;
 using Binance.Net.Enums;
 using MarketDataAggregator.Actors;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
-var actorSystem = ActorSystem.Create("MarketData");
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
 
-var consoleWriterActor = actorSystem.ActorOf(Props.Create<ConsoleWriterActor>(), "consoleWriter");
+var builder = new HostBuilder()
+    .ConfigureAppConfiguration(c => c.AddEnvironmentVariables()
+        .AddJsonFile("appsettings.json")
+        .AddJsonFile($"appsettings.{environment}.json"))
+    .ConfigureServices((builderContext, services) =>
+    {
+        services.AddAkka("Rsi", (configurationBuilder, provider) =>
+        {
+            configurationBuilder.WithActors((system, registry) =>
+            {
+                var consoleWriterProps = Props.Create(() => new ConsoleWriterActor());
+                var consoleWriterActor = system.ActorOf(consoleWriterProps, "consoleWriterActor");
 
-var props = Props.Create(() => new MarketDataSubscriberActor("BTCUSDT", KlineInterval.OneMinute, consoleWriterActor));
-var marketDataSubscriberActor = actorSystem.ActorOf(props, "marketDataSubscriber");
+                var subscriberProps = Props.Create(() => new KlineSubscriberActor("BTCUSDT", KlineInterval.OneMinute, consoleWriterActor));
+                var subscriberActor = system.ActorOf(subscriberProps, "subscriberActor");
 
-Console.WriteLine($"Press any key to stop the {nameof(MarketDataSubscriberActor)}...");
-Console.ReadKey();
+                registry.Register<ConsoleWriterActor>(consoleWriterActor);
+                registry.Register<KlineSubscriberActor>(subscriberActor);
+            });
+        });
+    })
+    .Build();
 
-// TODO: Fix dead letter message
-marketDataSubscriberActor.Tell(PoisonPill.Instance);
-
-Console.ReadKey();
+await builder.RunAsync();

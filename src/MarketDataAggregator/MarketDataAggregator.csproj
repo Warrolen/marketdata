@@ -8,9 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Akka" Version="1.5.16" />
+    <PackageReference Include="Akka.Hosting" Version="1.5.15" />
     <PackageReference Include="Binance.Net" Version="9.4.0" />
     <PackageReference Include="Petabridge.Collections" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

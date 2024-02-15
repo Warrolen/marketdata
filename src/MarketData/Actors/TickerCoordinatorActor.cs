@@ -3,9 +3,12 @@ using MarketData.Messages;
 
 namespace MarketData.Actors;
 
-public class TickerDispatcherActor : ReceiveActor
+/// <summary>
+/// Child-per entity parent for tickers.
+/// </summary>
+public class TickerCoordinatorActor : ReceiveActor
 {
-    public TickerDispatcherActor()
+    public TickerCoordinatorActor()
     {
         Receive<TickerUpdate>(ticker =>
         {
